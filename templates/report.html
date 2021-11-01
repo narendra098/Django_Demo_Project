@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<h2 style="color:black" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">New Master Incident</h2>
+<h3 style="color:black">Initial Reporting</h3>
+<div class="container">
+<form action="{% url 'savereport' %}" method="POST">
+    {% csrf_token %}
+    <label for="location">Location:</label>
+    <select id="location" name="location">
+    <option value="Corporate Headoffice">Corporate Headoffice</option>
+    <option value="operations Department">Operations Department</option>
+    <option value="work station">work station</option>
+    <option value="Marketing Division">Marketing Division</option>
+    </select>
+   </br>
+
+    <label for="incident_dept">Incident Department: </label>
+     <input type="text" id="Incident_dept" name="incident_dept">
+    </br>
+
+    <label for="dateandtime">Date and Time of Incident: </label>
+    <input type="datetime-local" id="dateandtime" name="dateandtime">
+    </br>
+
+    <label for="incident_location">Incident location: </label>
+   <input type="text" id="Incident_location" name="incident_location">
+    </br>
+
+    <label for="severity">Initial Severity: </label>
+   <select id="severity" name="severity">
+    <option value="Mild">Mild</option>
+    <option value="Moderate">Moderate</option>
+    <option value="severe">Severe</option>
+    <option value="fatal">Fatal</option>
+   </select>
+     </br>
+
+    <label for="suspected_cause">Suspected Cause: </label>
+    <input type="text" id="suspected_cause" name="suspected_cause">
+    </br
+
+    <label for="immediate_action_taken">immediate action taken: </label>
+    <input type="text" id="immediate_action_taken" name="immediate_action_taken">
+    </br>
+
+    <label>Subincident type: </label></br>
+    <input type="checkbox" id="type1" name="type" value="Environmental_incident">
+  <label for="type1">Environmental Incident </label><br>
+  <input type="checkbox" id="type2" name="type" value="Injury/illness">
+  <label for="type2"> Injury/illness</label><br>
+  <input type="checkbox" id="type3" name="type" value="property_damage">
+  <label for="type3"> Property Damage</label><br>
+     <input type="checkbox" id="type4" name="type" value="vehicle">
+        <label for="type3">Vehicle</label>
+    </br>
+
+    <input type="submit">
+</form>
+    {% if user.is_authenticated %}
+    <h3 style="color:black;margin:5px">reported by {{user.username}}</h3>
+    {% endif %}
+
+
+{% endblock %}
